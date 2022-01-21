@@ -7,3 +7,4 @@ First Step to Raspiberry
 
    introduce
    BurnOS
+   Conn2RaspiBySSH
