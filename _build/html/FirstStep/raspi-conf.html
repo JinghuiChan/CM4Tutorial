@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>树莓派raspi-config配置 &mdash; CM4Tutorial 1.0 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="prev" title="configurate raspi wifi" href="conf-wifi.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> CM4Tutorial
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="firstStep.html">First Step to Raspiberry</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduce.html">什么是树莓派？？ 认识树莓派</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BurnOS.html">CM4烧录系统</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Conn2RaspiBySSH.html">Connection to raspiberry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conf-wifi.html">configurate raspi wifi</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">树莓派raspi-config配置</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#wifi">wifi 设置</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CM4Tutorial</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="firstStep.html">First Step to Raspiberry</a> &raquo;</li>
+      <li>树莓派raspi-config配置</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/FirstStep/raspi-conf.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="raspi-config">
+<h1>树莓派raspi-config配置<a class="headerlink" href="#raspi-config" title="永久链接至标题">¶</a></h1>
+<hr class="docutils" />
+<p>第一次使用树莓派的时候需要进行一些简单的配置，在终端运行如下命令进入配置界面。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo raspi-config
+</pre></div>
+</div>
+<p><img alt="../_images/012.png" src="../_images/012.png" /></p>
+<ul class="simple">
+<li><p>Change User Password 改变默认pi用户的密码，按回车后输入pi用户的新密码。</p></li>
+<li><p>Network Options 网络设置选项。</p>
+<ul>
+<li><p>Hostname  在网上邻居或者路由器能看到的主机名称</p></li>
+<li><p>Wireless LAN Wifi连接，输入无线网络的名称和密码。</p></li>
+<li><p>Network interface name 启用/禁用可预测网络接口名称。</p></li>
+<li><p>Network proxy setting 配置网络代理设置</p></li>
+</ul>
+</li>
+<li><p>boot options 启动选项</p>
+<ul>
+<li><p>desktop/CLI 桌面/ CLI</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>console 控制台   
+console autologin 控制台登录    
+desktop 桌面   
+desktop autologin 桌面登陆
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Wait</span> <span class="k">for</span> <span class="n">Network</span> <span class="n">at</span> <span class="n">Boot</span> <span class="n">等待开机时的网络</span>
+<span class="o">*</span> <span class="n">Splash</span> <span class="n">Screen</span> <span class="n">选择图形启动屏幕或文本引导</span>
+<span class="o">*</span> <span class="n">Boot</span> <span class="n">Order</span> <span class="n">选择网络或USB设备引导</span>
+<span class="o">*</span> <span class="n">Boot</span> <span class="n">ROM</span> <span class="n">Version</span> <span class="n">选择最新或默认引导ROM软件</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Internationalisation Options 国际化选项，可以更改默认语言</p>
+<ul>
+<li><p>Change Locale
+语言和区域设置。选中zh-cn然后回车</p></li>
+<li><p>Change Timezone
+设置时区，如果不进行设置，Pi的时间就显示不正常。</p></li>
+<li><p>Change Keyboard Layout 改变键盘布局,国内多使用PC104标准键盘，
+一般设置如下：</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>-&gt;Generic <span class="m">104</span>-key PC 
+
+     -&gt;English<span class="o">(</span>US<span class="o">)</span> 
+
+       -&gt;The default <span class="k">for</span> the keyboard layout 
+
+         -&gt;No compose key
+
+           -&gt;ctrl_alt_backspace Yes
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Change</span> <span class="n">WLAN</span> <span class="n">Country</span> <span class="n">设置网络所在的国家或地区</span>
+</pre></div>
+</div>
+<br><ul class="simple">
+<li><p>Interfacing Option 配置与外围设备的连接</p>
+<ul>
+<li><p>P1 Camera 是否开启摄像头</p></li>
+<li><p>P2 SSH 是否运行SSH登录，建议开户此选项，以后操作PI方便， 有网络就行，不用开屏幕了。</p></li>
+<li><p>P3 VNC 是否开启VNC</p></li>
+<li><p>P4 SPI 是否默认启动SPI内核驱动</p></li>
+<li><p>P5 I2C是否默认启动I2C内核驱动</p></li>
+<li><p>P6 Serial 是否默认启动串口调试</p></li>
+</ul>
+</li>
+</ul>
+<br><ul class="simple">
+<li><p>Overclock（超频可能导致树莓派损坏，如无特殊要求，不建议超频）</p>
+<ul>
+<li><p>None 不超频，运行在700Mhz，核心频率250Mhz，内存频率400Mhz，不增加电压</p></li>
+<li><p>Modest 适度超频，运行在800Mhz，核心频率250Mhz，内存频率400Mhz，不增加电压</p></li>
+<li><p>Medium 中度超频，运行在900Mhz，核心频率250Mhz，内存频率450Mhz，增加电压2</p></li>
+<li><p>High 高度超频，运行在950Mhz，核心频率250Mhz，内存频率450Mhz，增加电压6</p></li>
+<li><p>Turbo 终极超频，运行在1000Mhz，核心频率500Mhz，内存频率600Mhz，增加电压6</p></li>
+<li><p>Pi2 2代专有的超频，运行在1000Mhz，核心频率500Mhz，内存频率500Mhz，增加电压2</p></li>
+</ul>
+</li>
+</ul>
+<br><ul class="simple">
+<li><p>Advanced Options 高级设置</p>
+<ul>
+<li><p>A1 Expand Filesystem Ensure that all of card storage is available 扩展文件系统确保所有卡存储都可用</p></li>
+<li><p>A2 Overscan 是否让屏幕内容全屏显示</p></li>
+<li><p>A3 Memory Split 内存分配，选择给GPU多少内存</p></li>
+<li><p>A4 Audio 选择声音默认输出到模拟口还是HDMI口i</p></li>
+<li><p>A5 Resolution 设置特定的屏幕分辨率</p></li>
+<li><p>A6 Screen Blanking 启用/禁用屏幕消隐</p></li>
+<li><p>A7 Pixel Doubling 启用/禁用2x2像素映射</p></li>
+<li><p>A8 GL Driver 启用/禁用实验桌面GL驱动程序</p></li>
+<li><p>A9 Compositor 启用/禁用xcompmgr组合管理器</p></li>
+<li><p>AA Pi 4 Video output Pi 4的视频输出选项</p></li>
+<li><p>AB Overlay FS 启用/禁用只读文件系统</p></li>
+</ul>
+</li>
+</ul>
+<br><ul>
+<li><p>Update 将此工具更新到最新版本</p>
+<br></li>
+<li><p>About raspi-config 关于raspi-config的信息。</p></li>
+</ul>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>若想改中文，须安装中文字体，命令如下：</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt-get update  
+sudo apt-get install ttf-wqy-zenhei ttf-wqy-microhei
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>初次启动树莓派要设置Internationalisation Options选项</p>
+<ul>
+<li><p>Change Locale设置语言，默认为英文</p></li>
+<li><p>移动到屏幕底部，用空格键选中zh-CN.GBK GBK 和 zh_CN.UTF-8 UTF-8两项,然后按回车，然后默认语言选中zh-CN.UTF-8，然后回车。</p></li>
+<li><p>安装拼音输入法</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt-get install scim-pinyin
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>- change Timezone 设置时区，选择Asia（亚洲）再选择shanghai（上海）。
+- Change Keyboard Layout 改变键盘布局
+</pre></div>
+</div>
+<div class="section" id="wifi">
+<h2>wifi 设置<a class="headerlink" href="#wifi" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>运行如下命令查看网卡信息，若有wlan0则已经识别无线网卡</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ifconfig
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>打开配置文件并修改</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo vi /etc/wpa_supplicant/wpa_supplicant.conf
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>在文件的底部添加下面语句</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">network</span><span class="o">={</span>
+
+<span class="nv">ssid</span><span class="o">=</span>“waveshare_1013”
+
+<span class="nv">psk</span><span class="o">=</span>”waveshare”
+
+<span class="o">}</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>其中ssid为你要链接的wifi账号，psk为wifi密码。后面改为对应的wifi账号密码。
+重启网卡使设置生效</p>
+</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo ifup wlan0
+</pre></div>
+</div>
+<blockquote>
+<div><p>或者直接使用sudo reboot命令重启树莓派。</p>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="conf-wifi.html" class="btn btn-neutral float-left" title="configurate raspi wifi" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2022, Jinghui Chan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

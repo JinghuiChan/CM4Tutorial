@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>摄像头的基本使用 &mdash; CM4Tutorial 1.0 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="prev" title="配置基础环境" href="conf-env.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> CM4Tutorial
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../FirstStep/firstStep.html">First Step to Raspiberry</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="opencvTutorial.html">opencv tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="conf-env.html">配置基础环境</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">摄像头的基本使用</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#csi">1. CSI摄像头</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#picamera">1.1 picamera</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#v4l2">1.2 V4L2</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#usb">2. USB摄像头</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">3. 网络摄像头</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#python3">3.1 Python3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c">3.2 c++</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CM4Tutorial</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="opencvTutorial.html">opencv tutorials</a> &raquo;</li>
+      <li>摄像头的基本使用</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/opencvTutorial/useCamera.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="id1">
+<h1>摄像头的基本使用<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<hr class="docutils" />
+<div class="section" id="csi">
+<h2>1. CSI摄像头<a class="headerlink" href="#csi" title="永久链接至标题">¶</a></h2>
+<p>首先将讲解CSI摄像头的使用：</p>
+<p><img alt="../_images/013.png" src="../_images/013.png" /></p>
+<div class="section" id="picamera">
+<h3>1.1 picamera<a class="headerlink" href="#picamera" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p>树莓派自带的摄像头为CSI摄像头，在树莓派平台中，发行版的Raspbian默认安装了树莓派平台的picamera:</p>
+</div></blockquote>
+<p><a class="reference external" href="https://picamera.readthedocs.io/en/release-1.13/index.html">相关官方文档链接</a></p>
+<blockquote>
+<div><p>执行该脚本将录制一段10秒的视频到本地：</p>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">picamera</span>
+
+<span class="n">camera</span> <span class="o">=</span> <span class="n">picamera</span><span class="o">.</span><span class="n">PiCamera</span><span class="p">()</span>
+<span class="n">camera</span><span class="o">.</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">)</span>
+<span class="n">camera</span><span class="o">.</span><span class="n">start_recording</span><span class="p">(</span><span class="s1">&#39;my_video.h264&#39;</span><span class="p">)</span>
+<span class="n">camera</span><span class="o">.</span><span class="n">wait_recording</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">camera</span><span class="o">.</span><span class="n">stop_recording</span><span class="p">()</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>但由于picamera输出的数据是RGB格式的，需要通过Numpy转换为BGR格式，代码如下：</p>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">picamera</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+
+<span class="k">with</span> <span class="n">picamera</span><span class="o">.</span><span class="n">PiCamera</span><span class="p">()</span> <span class="k">as</span> <span class="n">camera</span><span class="p">:</span>
+    <span class="n">camera</span><span class="o">.</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">320</span><span class="p">,</span> <span class="mi">240</span><span class="p">)</span>
+    <span class="n">camera</span><span class="o">.</span><span class="n">framerate</span> <span class="o">=</span> <span class="mi">24</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">240</span> <span class="o">*</span> <span class="mi">320</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+    <span class="c1"># save as bgr format for OpenCV</span>
+    <span class="n">camera</span><span class="o">.</span><span class="n">capture</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="s1">&#39;bgr&#39;</span><span class="p">)</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">240</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;img&quot;</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">)):</span>
+        <span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>当然，picamera 也提供了PIRGBArray对象，用来保存RGB 图像数据,下面将在capture_continuous函数中，不断地把RGB转换成BGR图像，供OpenCV显示，以形成视频流。</p>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">picamera.array</span> <span class="kn">import</span> <span class="n">PiRGBArray</span>
+<span class="kn">from</span> <span class="nn">picamera</span> <span class="kn">import</span> <span class="n">PiCamera</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+
+<span class="c1"># initialize the camera and grab a reference to the raw camera capture</span>
+<span class="n">camera</span> <span class="o">=</span> <span class="n">PiCamera</span><span class="p">()</span>
+<span class="n">camera</span><span class="o">.</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">)</span>
+<span class="n">camera</span><span class="o">.</span><span class="n">framerate</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">rawCapture</span> <span class="o">=</span> <span class="n">PiRGBArray</span><span class="p">(</span><span class="n">camera</span><span class="p">)</span>
+<span class="c1"># allow the camera to warmup</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="c1"># capture frames from the camera</span>
+<span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">camera</span><span class="o">.</span><span class="n">capture_continuous</span><span class="p">(</span><span class="n">rawCapture</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s2">&quot;bgr&quot;</span><span class="p">,</span> <span class="n">use_video_port</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">array</span>
+    <span class="c1"># show the frame</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;Frame&quot;</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+    <span class="c1"># prepare for net stream</span>
+    <span class="n">rawCapture</span><span class="o">.</span><span class="n">truncate</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">)):</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+        <span class="k">break</span><span class="p">;</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>但由于picamera为树莓派或兼容树莓派平台专用的库，且仅能供树莓派使用，下面将介绍更为通用的使用方法。</p>
+</div></blockquote>
+</div>
+<div class="section" id="v4l2">
+<h3>1.2 V4L2<a class="headerlink" href="#v4l2" title="永久链接至标题">¶</a></h3>
+<p>目前,CSI摄像头可通过picamera等库进行调用，但在Raspbian系统中，并不属于一个video设备而存在，若想将CSI摄像头作为一个视频设备文件使用，则要开启V4L2(Video for Linux 2)模块以开启：</p>
+<p>开启方法如下:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo vim /etc/modules
+</pre></div>
+</div>
+<p>在末尾添加一行：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>bcm2835-v4l2
+</pre></div>
+</div>
+<p>此时，CSI摄像头便成为了一个video设备，此时在终端执行：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ls -ltrh /dev/video*
+</pre></div>
+</div>
+<p>便可查看到video设备，其中video0便是CSI摄像头：</p>
+</div>
+</div>
+<div class="section" id="usb">
+<h2>2. USB摄像头<a class="headerlink" href="#usb" title="永久链接至标题">¶</a></h2>
+<p>树莓派除了支持CSI摄像头外，同样也支持USB摄像头：</p>
+<p>若采用USB摄像头，若摄像头本身免驱，接入树莓派后，将直接识别的video设备，在/dev下可找到对应的video设备，在中断，输入命令：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ls -ltrh /dev/video*
+</pre></div>
+</div>
+<p>即可查询到新接入的video设备。</p>
+<p>但使用Python，C++使用摄像头，区分不同的摄像头时：</p>
+<p>c++：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">VideoCapture</span> <span class="nf">cap</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>传入参数0代表使用CSI摄像头，传入其它参数代表使用其它video序号对应的USB摄像头。</p>
+</div>
+<div class="section" id="id2">
+<h2>3. 网络摄像头<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>除了使用CSI摄像头，USB摄像头外，还可以将手机变成一个IP摄像头，具体方法如下：</p>
+<p>在手机应用市场中，搜索这款名为IP摄像头的APP</p>
+<p>安装好后，连接wifi，确保树莓派和手机处在同一局域网内，手机打开IP摄像头软件，同时点击打开IP摄像头服务器，即可将手机变成一个IP摄像头。如下图所示：</p>
+<p>此时,在浏览器中打开该IP地址，输入用户名:admin，密码:admin，即可浏览摄像头画面：</p>
+<p>此时说明手机成为了一个IP摄像头，此摄像头可供OpenCV调用。</p>
+<p>OpenCV调用IP摄像头的源程序如下：</p>
+<div class="section" id="python3">
+<h3>3.1 Python3<a class="headerlink" href="#python3" title="永久链接至标题">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Waveshare OpenCV Tutorial</span>
+<span class="sd">01_IP_Camera.py</span>
+<span class="sd">A demo to show whether The OpenCV and IP camera is well installed</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;OpenCV Version:{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">__version__</span><span class="p">))</span>
+    <span class="c1"># 0: use CSI camera,1：use USB camera</span>
+    <span class="n">ip_camera_url</span> <span class="o">=</span> <span class="s1">&#39;http://admin:admin@192.168.10.215:8081&#39;</span>
+    <span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="n">ip_camera_url</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="ow">not</span> <span class="n">cap</span><span class="o">.</span><span class="n">isOpened</span><span class="p">()):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;can&#39;t open this camera&quot;</span><span class="p">)</span>
+
+    <span class="k">while</span><span class="p">(</span><span class="bp">True</span><span class="p">):</span>
+        <span class="n">ret</span><span class="p">,</span> <span class="n">FrameImage</span> <span class="o">=</span> <span class="n">cap</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">ret</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">&#39;Camera Capture&#39;</span><span class="p">,</span><span class="n">FrameImage</span><span class="p">)</span>
+            <span class="c1">#Press Q to quit</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">):</span>
+                <span class="n">cap</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+                <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">break</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="vm">__doc__</span><span class="p">)</span>
+    <span class="n">main</span><span class="p">()</span>
+    <span class="c1"># Release resource</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="c">
+<h3>3.2 c++<a class="headerlink" href="#c" title="永久链接至标题">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;opencv2/highgui/highgui.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;opencv2/imgproc/imgproc.hpp&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">cv</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Waveshare OpenCV Tutorial&quot;</span><span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;00_Test_OpenCV&quot;</span><span class="o">&lt;</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;A demo to show whether The OpenCV and IP camera is well installed&quot;</span> <span class="o">&lt;</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;OpenCV Version:&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">CV_VERSION</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">const</span> <span class="n">string</span> <span class="n">ip_camera_url</span> <span class="o">=</span> <span class="s">&quot;http://admin:admin@192.168.10.215:8081&quot;</span><span class="p">;</span>
+    <span class="n">VideoCapture</span> <span class="n">cap</span><span class="p">(</span><span class="n">ip_camera_url</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">cap</span><span class="p">.</span><span class="n">isOpened</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;can&#39;t open this camera&quot;</span><span class="o">&lt;</span><span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>    
+    <span class="n">Mat</span> <span class="n">FrameImage</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cap</span><span class="o">&gt;&gt;</span><span class="n">FrameImage</span><span class="p">;</span>
+        <span class="n">imshow</span><span class="p">(</span><span class="s">&quot;Camera Capture&quot;</span><span class="p">,</span><span class="n">FrameImage</span><span class="p">);</span>
+        <span class="c1">//Press Q to quit</span>
+        <span class="k">if</span><span class="p">(</span><span class="kt">char</span><span class="p">(</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="o">==</span> <span class="sc">&#39;q&#39;</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="conf-env.html" class="btn btn-neutral float-left" title="配置基础环境" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2022, Jinghui Chan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -2,7 +2,7 @@
 
 ----------------------------------------------
 
-## <font color='red'>EMMC 版本不可以使用SD卡</font>
+<font color='red'>EMMC 版本不可以使用SD卡</font>
 
 1. 下载系统（ [戳我下载](https://www.raspberrypi.com/software/operating-systems/) ）下载最新发布的系统（或如图所示）。如果下载的是种子文件，使用使用迅雷或彗星等软件再下载
 

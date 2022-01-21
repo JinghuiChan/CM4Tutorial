@@ -17,7 +17,8 @@
         <script src="../_static/translations.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" /> 
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="prev" title="CM4烧录系统" href="BurnOS.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -37,8 +38,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="firstStep.html">First Step to Raspiberry</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="firstStep.html">First Step to Raspiberry</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduce.html">什么是树莓派？？ 认识树莓派</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BurnOS.html">CM4烧录系统</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Connection to raspiberry</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -55,6 +61,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="firstStep.html">First Step to Raspiberry</a> &raquo;</li>
       <li>Connection to raspiberry</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/FirstStep/Conn2RaspiBySSH.md.txt" rel="nofollow"> View page source</a>
@@ -68,13 +75,47 @@
   <div class="section" id="connection-to-raspiberry">
 <h1>Connection to raspiberry<a class="headerlink" href="#connection-to-raspiberry" title="永久链接至标题">¶</a></h1>
 <hr class="docutils" />
-<p><img alt="ssh" src="../_images/connection-ssh.png" /></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>首先我们安装[Xshell软件](https://www.waveshare.net/w/upload/3/3b/Xshell-6.0.7z)，安装步骤如下：
+</pre></div>
+</div>
+<p><img alt="../_images/01.png" src="../_images/01.png" /></p>
+<p><img alt="../_images/02.png" src="../_images/02.png" /></p>
+<p><img alt="../_images/03.png" src="../_images/03.png" /></p>
+<p><img alt="../_images/04.png" src="../_images/04.png" /></p>
+<p><img alt="../_images/05.png" src="../_images/05.png" /></p>
+<p><img alt="../_images/06.png" src="../_images/06.png" /></p>
+<p><img alt="../_images/07.png" src="../_images/07.png" /></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>接着把树莓派接入网络，然后上电。可以借助IP扫描软件或者路由器搜索到树莓派获取到的IP地址，如下：  
+</pre></div>
+</div>
+<p><img alt="../_images/08.png" src="../_images/08.png" /></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>说明：如果烧写的是2016年11月后的Raspbian系统，默认是没开启SSH服务器的，你需要手头开启它。开启的方法有2种（推荐用2的，操作简单）：
+
+方法1、进到raspi-config，选择Interfacing options，选择ssh，点击Enter，然后选择 Enable or disable ssh server  
+
+方法2、在烧写好镜像的sd卡根目录下新建一个命名为“ssh”的文件，保存即可。(见下图)
+（相关内容详见：https://www.raspberrypi.org/documentation/remote-access/ssh/）  
+</pre></div>
+</div>
+<p><img alt="../_images/09.png" src="../_images/09.png" /></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>    通过ssh登录树莓派
+</pre></div>
+</div>
+<p><img alt="../_images/10.png" src="../_images/10.png" /></p>
+<p><img alt="../_images/11.png" src="../_images/11.png" /></p>
+<p><img alt="../_images/12.png" src="../_images/12.png" /></p>
+<p><img alt="../_images/13.png" src="../_images/13.png" /></p>
+<p><img alt="../_images/14.png" src="../_images/14.png" /></p>
+<p>连接成功后，可以看到树莓派命令行界面：</p>
+<p><img alt="../_images/15.png" src="../_images/15.png" /></p>
 </div>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="BurnOS.html" class="btn btn-neutral float-left" title="CM4烧录系统" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 

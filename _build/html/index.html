@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to CM4Tutorial’s documentation! &mdash; CM4Tutorial 1.0 文档</title>
+  <title>Raspiberry CM4 Tutorial &mdash; CM4Tutorial 1.0 文档</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -40,6 +40,8 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="FirstStep/firstStep.html">First Step to Raspiberry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opencvTutorial/opencvTutorial.html">opencv tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="others/others.html">移植开源算法</a></li>
 </ul>
 
         </div>
@@ -56,7 +58,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home"></a> &raquo;</li>
-      <li>Welcome to CM4Tutorial’s documentation!</li>
+      <li>Raspiberry CM4 Tutorial</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -66,8 +68,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="welcome-to-cm4tutorial-s-documentation">
-<h1>Welcome to CM4Tutorial’s documentation!<a class="headerlink" href="#welcome-to-cm4tutorial-s-documentation" title="永久链接至标题">¶</a></h1>
+  <div class="section" id="raspiberry-cm4-tutorial">
+<h1>Raspiberry CM4 Tutorial<a class="headerlink" href="#raspiberry-cm4-tutorial" title="永久链接至标题">¶</a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
@@ -75,18 +77,59 @@
 <li class="toctree-l2"><a class="reference internal" href="FirstStep/introduce.html">什么是树莓派？？ 认识树莓派</a></li>
 <li class="toctree-l2"><a class="reference internal" href="FirstStep/BurnOS.html">CM4烧录系统</a></li>
 <li class="toctree-l2"><a class="reference internal" href="FirstStep/Conn2RaspiBySSH.html">Connection to raspiberry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FirstStep/conf-wifi.html">configurate raspi wifi</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="FirstStep/conf-wifi.html#wifi">WIFI 设置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FirstStep/conf-wifi.html#id1">设置WiFi连接的另一种方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="FirstStep/raspi-conf.html">树莓派raspi-config配置</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="FirstStep/raspi-conf.html#wifi">wifi 设置</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="opencvTutorial/opencvTutorial.html">opencv tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="opencvTutorial/conf-env.html">配置基础环境</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opencvTutorial/conf-env.html#id2">1. 烧录系统</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencvTutorial/conf-env.html#id3">2. 基础设置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencvTutorial/conf-env.html#opencv">3 安装OpenCV所需要的库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencvTutorial/conf-env.html#id11">4. 下载OpenCV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencvTutorial/conf-env.html#cmake">5. 配置Cmake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencvTutorial/conf-env.html#id12">6. 编译</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencvTutorial/conf-env.html#id13">7. 安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencvTutorial/conf-env.html#id14">8. 测试是否安装完成</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opencvTutorial/useCamera.html">摄像头的基本使用</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opencvTutorial/useCamera.html#csi">1. CSI摄像头</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencvTutorial/useCamera.html#usb">2. USB摄像头</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencvTutorial/useCamera.html#id2">3. 网络摄像头</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opencvTutorial/imgop.html">图像与视频载入、显示、输出</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opencvTutorial/imgop.html#id2">1. 图像的载入,显示，与输出</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencvTutorial/imgop.html#id3">2 视频，摄像头的载入，显示</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencvTutorial/imgop.html#id6">3 视频，摄像头的输出</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="others/others.html">移植开源算法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="others/orb-slam2.html">树莓派4 运行ORB-SLAM2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="others/orb-slam2.html#id1">1. 更换源</a></li>
+<li class="toctree-l3"><a class="reference internal" href="others/orb-slam2.html#eigen">2 安装eigen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="others/orb-slam2.html#opencv">3 安装opencv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="others/orb-slam2.html#pangolin">3 安装pangolin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="others/orb-slam2.html#id12">4 编译orb-slam2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="others/orb-slam2.html#id13">5 运行ORB-SLAM2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="others/orb-slam2.html#ros-examples">6 ROS Examples</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
-</div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="永久链接至标题">¶</a></h1>
-<ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">索引</span></a></p></li>
-<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">模块索引</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">搜索页面</span></a></p></li>
-</ul>
+<p>read the document on line <a class="reference external" href="https://cm4tutorial.readthedocs.io/en/latest/index.html">https://cm4tutorial.readthedocs.io/en/latest/index.html</a></p>
 </div>
 
 

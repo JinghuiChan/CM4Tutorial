@@ -3,19 +3,15 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to CM4Tutorial's documentation!
+Raspiberry CM4 Tutorial
 =======================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents:
 
    ./FirstStep/firstStep
+   ./opencvTutorial/opencvTutorial
+   ./others/others
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+read the document on line https://cm4tutorial.readthedocs.io/en/latest/index.html

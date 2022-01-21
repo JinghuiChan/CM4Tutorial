@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>树莓派4 运行ORB-SLAM2 &mdash; CM4Tutorial 1.0 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="prev" title="移植开源算法" href="others.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> CM4Tutorial
+            <img src="../_static/logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../FirstStep/firstStep.html">First Step to Raspiberry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../opencvTutorial/opencvTutorial.html">opencv tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="others.html">移植开源算法</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">树莓派4 运行ORB-SLAM2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">1. 更换源</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">1.1 查看系统版本</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">1.2 更换软件源</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">1.3 更换系统源</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">1.4 更新树莓派数据</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#eigen">2 安装eigen</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6">2.1 安装相关依赖</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">2.2 安装eigen</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#opencv">3 安装opencv</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">3.1 安装相关依赖</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">3.2 安装opencv</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pangolin">3 安装pangolin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id10">3.1 安装依赖</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">3.2 安装pangolin</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">4 编译orb-slam2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">5 运行ORB-SLAM2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#monocular-examples">5.1 Monocular Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stereo-examples">5.2 Stereo Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rgb-d-example">5.3 RGB-D Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ros-examples">6 ROS Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CM4Tutorial</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="others.html">移植开源算法</a> &raquo;</li>
+      <li>树莓派4 运行ORB-SLAM2</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/others/orb-slam2.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="orb-slam2">
+<h1>树莓派4 运行ORB-SLAM2<a class="headerlink" href="#orb-slam2" title="永久链接至标题">¶</a></h1>
+<hr class="docutils" />
+<div class="section" id="id1">
+<h2>1. 更换源<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>树莓派开机后，首先要换镜像源（本人用的清华源），如果用树莓派自带的镜像源，会出现各种依赖问题</p>
+<div class="section" id="id2">
+<h3>1.1 查看系统版本<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cat /etc/os-release
+</pre></div>
+</div>
+<p>VERSION_ID为版本号；<br />VERSION_CODENAME为版本buster（有的为stretch版本，这个要看清楚，影响后面改镜像源要输入的代码）</p>
+</div>
+<div class="section" id="id3">
+<h3>1.2 更换软件源<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo nano /etc/apt/sources.list
+</pre></div>
+</div>
+<p>用#注释文件中的所有内容，添加：
+deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi
+deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi
+注意代码中的buster部分，如果第一步查看的版本不是buster，要将buster部分改为你所使用树莓派系统的版本
+添加完成后，ctrl+o保存，然后点击回车，再ctrl+x退出</p>
+</div>
+<div class="section" id="id4">
+<h3>1.3 更换系统源<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo nano /etc/apt/sources.list.d/raspi.list
+</pre></div>
+</div>
+<p>用#注释文件中的所有内容，添加：
+deb http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ buster main ui
+deb-src http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ buster main ui
+添加完成后，ctrl+o保存，然后点击回车，再ctrl+x退出</p>
+</div>
+<div class="section" id="id5">
+<h3>1.4 更新树莓派数据<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt-get update
+</pre></div>
+</div>
+<p>更新，至此，换源过程已完成</p>
+</div>
+</div>
+<div class="section" id="eigen">
+<h2>2 安装eigen<a class="headerlink" href="#eigen" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id6">
+<h3>2.1 安装相关依赖<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt-get install libboost-all-dev libblas-dev liblapack-dev
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>2.2 安装eigen<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt-get install libeigen3-dev
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="opencv">
+<h2>3 安装opencv<a class="headerlink" href="#opencv" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id8">
+<h3>3.1 安装相关依赖<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt-get install build-essential libgtk2.0-dev libvtk5-dev libjpeg-dev libtiff4-dev libjasper-dev libopenexr-dev libtbb-dev
+</pre></div>
+</div>
+<p>可能在安装时会提醒你更换依赖项版本，你更换成提供的相应版本就可以了</p>
+</div>
+<div class="section" id="id9">
+<h3>3.2 安装opencv<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<p>进入到下载的opencv文件夹中</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir build
+<span class="nb">cd</span> build
+cmake -D <span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>RELEASE -D <span class="nv">CMAKE_INSTALL_PREFIX</span><span class="o">=</span>/usr/local -D <span class="nv">WITH_FFMPEG</span><span class="o">=</span>OFF .. -DENABLE_PRECOMPILED_HEADERS<span class="o">=</span>OFF
+</pre></div>
+</div>
+<p>cmake过程出现错误可参考 <a class="reference external" href="https://blog.csdn.net/qq_17783559/article/details/81462599">这里…</a></p>
+<p>cmake成功后，输入：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make -j8
+</pre></div>
+</div>
+<p>需要等待很长时间，可能会出现</p>
+<p>…cv2.cpp.o] Error 1</p>
+<p><img alt="../_images/032.png" src="../_images/032.png" /></p>
+<p>具体可参考 <a class="reference external" href="https://blog.csdn.net/qq_44357371/article/details/105966714">可参考该博客</a></p>
+<p>make需要等很长时间，编译完成后，一定一定要记得输入：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo make install
+</pre></div>
+</div>
+<p>这样才能将opencv安装到树莓派上</p>
+</div>
+</div>
+<div class="section" id="pangolin">
+<h2>3 安装pangolin<a class="headerlink" href="#pangolin" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id10">
+<h3>3.1 安装依赖<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt-get install libglew-dev
+</pre></div>
+</div>
+</div>
+<div class="section" id="id11">
+<h3>3.2 安装pangolin<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
+<p>进入到pangolin文件夹，依次输入：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir build   
+<span class="nb">cd</span> build  
+cmake -DCPP11_NO_BOOST<span class="o">=</span><span class="m">1</span> ..   
+make -j
+</pre></div>
+</div>
+<p>在make时可能出现错误，参考 <a class="reference external" href="https://blog.csdn.net/limhsysu/article/details/84959736">这里…</a></p>
+<p>问题：/home/micoarm/Pangolin/include/pangolin/video/drivers/ffmpeg.h:143:5: error: ‘PixelFormat’ does not name a type
+PixelFormat fmtdst;
+make[2]: *** [src/CMakeFiles/pangolin.dir/video/video_output.cpp.o] Error 1
+make[2]: Leaving directory /home/micoarm/Pangolin/build’ make[1]: *** [src/CMakeFiles/pangolin.dir/all] Error 2 make[1]: Leaving directory/home/micoarm/Pangolin/build’
+make: *** [all] Error 2***</p>
+<p>**解决办法：**打开Pagolin/src/CMakeList.txt，将
+find_package(FFMPEG QUIET)模块的所有部分注释掉.</p>
+<p>编译完成后，输入</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo make install 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id12">
+<h2>4 编译orb-slam2<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ORB_SLAM2
+chmod +x build.sh
+./build.sh
+</pre></div>
+</div>
+<p>可能会出现一些错误</p>
+<ul class="simple">
+<li><p>usleep未定义：
+对相应文件增加</p></li>
+</ul>
+<blockquote>
+<div><p>#include&lt;unistd.h&gt;</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>编译ORB-SLAM2出现fatal error config.h没有那个文件或目录
+根据ORB-SLAM2主文件夹下面的build.sh里面的步骤配置cmake make 或者直接运行build.sh</p></li>
+</ul>
+</div>
+<div class="section" id="id13">
+<h2>5 运行ORB-SLAM2<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h2>
+<div class="section" id="monocular-examples">
+<h3>5.1 Monocular Examples<a class="headerlink" href="#monocular-examples" title="永久链接至标题">¶</a></h3>
+<div class="section" id="tum-dataset">
+<h4>5.1.1 TUM Dataset<a class="headerlink" href="#tum-dataset" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>Download a sequence from <a class="reference external" href="http://vision.in.tum.de/data/datasets/rgbd-dataset/download">http://vision.in.tum.de/data/datasets/rgbd-dataset/download</a> and uncompress it.</p></li>
+<li><p>Execute the following command. Change TUMX.yaml to TUM1.yaml,TUM2.yaml or TUM3.yaml for freiburg1, freiburg2 and freiburg3 sequences respectively. Change PATH_TO_SEQUENCE_FOLDERto the uncompressed sequence folder.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./Examples/Monocular/mono_tum Vocabulary/ORBvoc.txt Examples/Monocular/TUMX.yaml PATH_TO_SEQUENCE_FOLDER
+</pre></div>
+</div>
+</div>
+<div class="section" id="kitti-dataset">
+<h4>5.1.2 KITTI Dataset<a class="headerlink" href="#kitti-dataset" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>Download the dataset (grayscale images) from <a class="reference external" href="http://www.cvlibs.net/datasets/kitti/eval_odometry.php">http://www.cvlibs.net/datasets/kitti/eval_odometry.php</a></p></li>
+<li><p>Execute the following command. Change KITTIX.yamlby KITTI00-02.yaml, KITTI03.yaml or KITTI04-12.yaml for sequence 0 to 2, 3, and 4 to 12 respectively. Change PATH_TO_DATASET_FOLDER to the uncompressed dataset folder. Change SEQUENCE_NUMBER to 00, 01, 02,.., 11.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./Examples/Monocular/mono_kitti Vocabulary/ORBvoc.txt Examples/Monocular/KITTIX.yaml PATH_TO_DATASET_FOLDER/dataset/sequences/SEQUENCE_NUMBER
+</pre></div>
+</div>
+</div>
+<div class="section" id="euroc-dataset">
+<h4>5.1.3 EuRoC Dataset<a class="headerlink" href="#euroc-dataset" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>Download a sequence (ASL format) from <a class="reference external" href="http://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets">http://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets</a></p></li>
+<li><p>Execute the following first command for V1 and V2 sequences, or the second command for MH sequences. Change PATH_TO_SEQUENCE_FOLDER and SEQUENCE according to the sequence you want to run.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>Execute the following first <span class="nb">command</span> <span class="k">for</span> V1 and V2 sequences, or the second <span class="nb">command</span> <span class="k">for</span> MH sequences. Change PATH_TO_SEQUENCE_FOLDER and SEQUENCE according to the sequence you want to run.
+</pre></div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./Examples/Monocular/mono_euroc Vocabulary/ORBvoc.txt Examples/Monocular/EuRoC.yaml PATH_TO_SEQUENCE/cam0/data Examples/Monocular/EuRoC_TimeStamps/SEQUENCE.txt 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="stereo-examples">
+<h3>5.2 Stereo Examples<a class="headerlink" href="#stereo-examples" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id14">
+<h4>5.2.1 KITTI Dataset<a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>Download the dataset (grayscale images) from <a class="reference external" href="http://www.cvlibs.net/datasets/kitti/eval_odometry.php">http://www.cvlibs.net/datasets/kitti/eval_odometry.php</a></p></li>
+<li><p>Execute the following command. Change KITTIX.yamlto KITTI00-02.yaml, KITTI03.yaml or KITTI04-12.yaml for sequence 0 to 2, 3, and 4 to 12 respectively. Change PATH_TO_DATASET_FOLDER to the uncompressed dataset folder. Change SEQUENCE_NUMBER to 00, 01, 02,.., 11.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./Examples/Stereo/stereo_kitti Vocabulary/ORBvoc.txt Examples/Stereo/KITTIX.yaml PATH_TO_DATASET_FOLDER/dataset/sequences/SEQUENCE_NUMBER
+</pre></div>
+</div>
+</div>
+<div class="section" id="id15">
+<h4>5.2.2 EuRoC Dataset<a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>Download a sequence (ASL format) from [http://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets]（http://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets）</p></li>
+<li><p>Execute the following first command for V1 and V2 sequences, or the second command for MH sequences. Change PATH_TO_SEQUENCE_FOLDER and SEQUENCE according to the sequence you want to run.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./Examples/Stereo/stereo_euroc Vocabulary/ORBvoc.txt Examples/Stereo/EuRoC.yaml PATH_TO_SEQUENCE/mav0/cam0/data PATH_TO_SEQUENCE/mav0/cam1/data Examples/Stereo/EuRoC_TimeStamps/SEQUENCE.txt
+</pre></div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./Examples/Stereo/stereo_euroc Vocabulary/ORBvoc.txt Examples/Stereo/EuRoC.yaml PATH_TO_SEQUENCE/cam0/data PATH_TO_SEQUENCE/cam1/data Examples/Stereo/EuRoC_TimeStamps/SEQUENCE.txt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="rgb-d-example">
+<h3>5.3 RGB-D Example<a class="headerlink" href="#rgb-d-example" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id16">
+<h4>5.3.1 TUM Dataset<a class="headerlink" href="#id16" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>Download a sequence from <a class="reference external" href="http://vision.in.tum.de/data/datasets/rgbd-dataset/download">http://vision.in.tum.de/data/datasets/rgbd-dataset/download</a> and uncompress it.</p></li>
+<li><p>Associate RGB images and depth images using the python script <a class="reference external" href="https://vision.in.tum.de/data/datasets/rgbd-dataset/tools">associate.py</a>. We already provide associations for some of the sequences in Examples/RGB-D/associations/. You can generate your own associations file executing:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">associate</span><span class="o">.</span><span class="n">py</span> <span class="n">PATH_TO_SEQUENCE</span><span class="o">/</span><span class="n">rgb</span><span class="o">.</span><span class="n">txt</span> <span class="n">PATH_TO_SEQUENCE</span><span class="o">/</span><span class="n">depth</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">associations</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Execute the following command. Change TUMX.yaml to TUM1.yaml,TUM2.yaml or TUM3.yaml for freiburg1, freiburg2 and freiburg3 sequences respectively. Change PATH_TO_SEQUENCE_FOLDERto the uncompressed sequence folder. Change ASSOCIATIONS_FILE to the path to the corresponding associations file.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./Examples/RGB-D/rgbd_tum Vocabulary/ORBvoc.txt Examples/RGB-D/TUMX.yaml PATH_TO_SEQUENCE_FOLDER ASSOCIATIONS_FILE
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ros-examples">
+<h2>6 ROS Examples<a class="headerlink" href="#ros-examples" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>……</p>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="others.html" class="btn btn-neutral float-left" title="移植开源算法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2022, Jinghui Chan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
