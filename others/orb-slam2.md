@@ -151,15 +151,6 @@ chmod +x build.sh
 ./build.sh
 ```
 
-可能会出现一些错误
-
-* usleep未定义：
-  对相应文件增加
-> #include<unistd.h>
-
-* 编译ORB-SLAM2出现fatal error config.h没有那个文件或目录
-  根据ORB-SLAM2主文件夹下面的build.sh里面的步骤配置cmake make 或者直接运行build.sh
-
 
 ## 5 运行ORB-SLAM2
 
@@ -236,3 +227,54 @@ python associate.py PATH_TO_SEQUENCE/rgb.txt PATH_TO_SEQUENCE/depth.txt > associ
 ## 6 ROS Examples
 
 > ......
+
+
+## 7 Q&A
+### 7.1 编译相关问题汇总
+Q: usleep未定义
+
+A: 对相应文件增加
+
+```c++
+#include<unistd.h>
+```
+
+---------------------------------------------------------------------
+Q： 编译ORB-SLAM2出现fatal error config.h没有那个文件或目录
+
+A： 根据ORB-SLAM2主文件夹下面的build.sh里面的步骤配置cmake make 或者直接运行build.sh
+
+-----------------------------------------------------------------------------------
+
+
+### 7.2 运行问题汇总
+Q：运行ORB-SLAM2后为什么没有生成轨迹文件？
+
+A:将保存轨迹函数SLAM.SaveKeyFrameTrajectoryTUM()放在SLAM.Shutdown()之后,但是并不能解决线程不能正常关闭问题.  
+
+system.cc的Shutdown()中添加下面两句话:
+
+delete mpViewer;
+
+mpViewer = static_cast<Viewer*>(NULL);
+
+添加结果如图所示:
+
+```c++
+if(mpViewer)
+    {
+        mpViewer->RequestFinish();
+        while(!mpViewer->isFinished())
+        {
+            usleep(5000);
+            mpViewer->RequestFinish();
+        }
+ 
+        delete mpViewer;
+        mpViewer = static_cast<Viewer*>(NULL);       
+    }
+
+```
+
+------------------------------------------------------------------------------------------------------------------------
+

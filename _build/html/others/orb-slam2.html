@@ -18,6 +18,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="EVO - SLAM轨迹评估工具" href="evo.html" />
     <link rel="prev" title="移植开源算法" href="others.html" /> 
 </head>
 
@@ -73,8 +74,14 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#ros-examples">6 ROS Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#q-a">7 Q&amp;A</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id17">7.1 编译相关问题汇总</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id18">7.2 运行问题汇总</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evo.html">EVO - SLAM轨迹评估工具</a></li>
 </ul>
 </li>
 </ul>
@@ -232,18 +239,6 @@ chmod +x build.sh
 ./build.sh
 </pre></div>
 </div>
-<p>可能会出现一些错误</p>
-<ul class="simple">
-<li><p>usleep未定义：
-对相应文件增加</p></li>
-</ul>
-<blockquote>
-<div><p>#include&lt;unistd.h&gt;</p>
-</div></blockquote>
-<ul class="simple">
-<li><p>编译ORB-SLAM2出现fatal error config.h没有那个文件或目录
-根据ORB-SLAM2主文件夹下面的build.sh里面的步骤配置cmake make 或者直接运行build.sh</p></li>
-</ul>
 </div>
 <div class="section" id="id13">
 <h2>5 运行ORB-SLAM2<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h2>
@@ -336,6 +331,45 @@ chmod +x build.sh
 <div><p>……</p>
 </div></blockquote>
 </div>
+<div class="section" id="q-a">
+<h2>7 Q&amp;A<a class="headerlink" href="#q-a" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id17">
+<h3>7.1 编译相关问题汇总<a class="headerlink" href="#id17" title="永久链接至标题">¶</a></h3>
+<p>Q: usleep未定义</p>
+<p>A: 对相应文件增加</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>Q： 编译ORB-SLAM2出现fatal error config.h没有那个文件或目录</p>
+<p>A： 根据ORB-SLAM2主文件夹下面的build.sh里面的步骤配置cmake make 或者直接运行build.sh</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="id18">
+<h3>7.2 运行问题汇总<a class="headerlink" href="#id18" title="永久链接至标题">¶</a></h3>
+<p>Q：运行ORB-SLAM2后为什么没有生成轨迹文件？</p>
+<p>A:将保存轨迹函数SLAM.SaveKeyFrameTrajectoryTUM()放在SLAM.Shutdown()之后,但是并不能解决线程不能正常关闭问题.</p>
+<p>system.cc的Shutdown()中添加下面两句话:</p>
+<p>delete mpViewer;</p>
+<p>mpViewer = static_cast&lt;Viewer*&gt;(NULL);</p>
+<p>添加结果如图所示:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">mpViewer</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">mpViewer</span><span class="o">-&gt;</span><span class="n">RequestFinish</span><span class="p">();</span>
+        <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">mpViewer</span><span class="o">-&gt;</span><span class="n">isFinished</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="n">usleep</span><span class="p">(</span><span class="mi">5000</span><span class="p">);</span>
+            <span class="n">mpViewer</span><span class="o">-&gt;</span><span class="n">RequestFinish</span><span class="p">();</span>
+        <span class="p">}</span>
+ 
+        <span class="k">delete</span> <span class="n">mpViewer</span><span class="p">;</span>
+        <span class="n">mpViewer</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">Viewer</span><span class="o">*&gt;</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>       
+    <span class="p">}</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+</div>
+</div>
 </div>
 
 
@@ -343,6 +377,7 @@ chmod +x build.sh
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="others.html" class="btn btn-neutral float-left" title="移植开源算法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="evo.html" class="btn btn-neutral float-right" title="EVO - SLAM轨迹评估工具" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

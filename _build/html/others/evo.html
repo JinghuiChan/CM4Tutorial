@@ -17,7 +17,8 @@
         <script src="../_static/translations.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" /> 
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="prev" title="树莓派4 运行ORB-SLAM2" href="orb-slam2.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -37,10 +38,30 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../FirstStep/firstStep.html">First Step to Raspiberry</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../opencvTutorial/opencvTutorial.html">opencv tutorials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="others.html">移植开源算法</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="others.html">移植开源算法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="orb-slam2.html">树莓派4 运行ORB-SLAM2</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">EVO - SLAM轨迹评估工具</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#evo">1  EVO 的安装</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pip">1.1 更新pip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">1.2 安装EVO</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2 EVO使用</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">2.1 数据集转换格式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">2.2 evo命令格式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#options">2.3 其他参数选项-[options]</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evo-traj">2.4 显示轨迹evo_traj</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evo-ape">2.5 绝对位姿误差evo_ape</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evo-rpe">2.6 相对位姿误差evo_rpe</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -57,6 +78,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="others.html">移植开源算法</a> &raquo;</li>
       <li>EVO - SLAM轨迹评估工具</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/others/evo.md.txt" rel="nofollow"> View page source</a>
@@ -185,7 +207,9 @@ evo_rpe  euroc   data.tum   CameraTrajectory.txt   -va   -p  --plot_mode<span cl
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="orb-slam2.html" class="btn btn-neutral float-left" title="树莓派4 运行ORB-SLAM2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 
