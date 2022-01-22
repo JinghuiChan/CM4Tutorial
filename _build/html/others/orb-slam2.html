@@ -185,7 +185,7 @@ cmake -D <span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>RELEASE
 </div>
 <p>需要等待很长时间，可能会出现</p>
 <p>…cv2.cpp.o] Error 1</p>
-<p><img alt="../_images/032.png" src="../_images/032.png" /></p>
+<p><img alt="../_images/033.png" src="../_images/033.png" /></p>
 <p>具体可参考 <a class="reference external" href="https://blog.csdn.net/qq_44357371/article/details/105966714">可参考该博客</a></p>
 <p>make需要等很长时间，编译完成后，一定一定要记得输入：</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo make install
@@ -301,6 +301,7 @@ chmod +x build.sh
 <li><p>Download a sequence (ASL format) from [http://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets]（http://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets）</p></li>
 <li><p>Execute the following first command for V1 and V2 sequences, or the second command for MH sequences. Change PATH_TO_SEQUENCE_FOLDER and SEQUENCE according to the sequence you want to run.</p></li>
 </ul>
+<p><img alt="../_images/014.png" src="../_images/014.png" /></p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./Examples/Stereo/stereo_euroc Vocabulary/ORBvoc.txt Examples/Stereo/EuRoC.yaml PATH_TO_SEQUENCE/mav0/cam0/data PATH_TO_SEQUENCE/mav0/cam1/data Examples/Stereo/EuRoC_TimeStamps/SEQUENCE.txt
 </pre></div>
 </div>
